@@ -45,6 +45,48 @@
 
     <title>Harsh Shah - Flutter Developer Portfolio</title>
     <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            background-color: #0F172A; /* Match Splash Screen Dark Color */
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .loading-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        .loader-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 4px solid transparent;
+            border-top-color: #6366F1; /* Indigo */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .loader-ring:before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 4px solid transparent;
+            border-top-color: #EC4899; /* Pink */
+            border-radius: 50%;
+            animation: spin 2s linear infinite reverse;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FPKVD201S6"></script>
@@ -56,6 +98,9 @@
     gtag('config', 'G-FPKVD201S6');
 </script>
 <body>
-<script src="flutter_bootstrap.js" async></script>
+    <div class="loading-container">
+        <div class="loader-ring"></div>
+    </div>
+    <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
