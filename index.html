@@ -15,19 +15,22 @@
       This is a placeholder for base href that will be replaced by the value of
       the `--base-href` argument provided to `flutter build`.
     -->
-    <base href="/">
+    <base href="/portfolio/">
+    <base href="/"/>
 
 
     <meta charset="UTF-8">
     <meta content="IE=Edge" http-equiv="X-UA-Compatible">
     <meta name="description"
-        content="Harsh Shah - Flutter Developer Portfolio. Showcasing mobile and web applications built with Flutter.">
+          content="Harsh Shah — 4+YofE Mobile App Developer Portfolio. Showcasing mobile and web applications built with Flutter.">
     <meta name="author" content="Harsh Shah">
-    <meta name="keywords" content="Harsh Shah, Flutter Developer, Mobile App Developer, Portfolio, Flutter Apps">
+    <meta name="keywords"
+          content="Harsh Shah, Flutter Developer, Mobile App Developer, Portfolio, Flutter Apps">
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Harsh Shah - Flutter Developer Portfolio">
-    <meta property="og:description" content="Showcasing mobile and web applications built with Flutter">
+    <meta property="og:description"
+          content="Showcasing mobile and web applications built with Flutter">
     <meta property="og:type" content="website">
 
     <!-- iOS meta tags & icons -->
@@ -40,10 +43,10 @@
     <link rel="apple-touch-icon" sizes="512x512" href="icons/Icon-512.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/Icon-192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="icons/Icon-512.png" />
-    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png"/>
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/Icon-192.png"/>
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/Icon-512.png"/>
+    <link rel="shortcut icon" type="image/png" href="favicon.png"/>
 
     <title>Harsh Shah - Flutter Developer Portfolio</title>
     <link rel="manifest" href="manifest.json">
@@ -163,27 +166,27 @@
 </script>
 
 <body>
-    <div class="loading-container">
-        <div class="loader-track"></div>
-        <div class="loader-ring"></div>
-        <div class="inner-track"></div>
-        <div class="inner-ring"></div>
-        <div class="center-dot"></div>
-    </div>
-    <script>
-        // Immediate theme check to prevent flash of wrong color
-        if (window.matchMedia) {
-            const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            document.body.style.backgroundColor = isDarkMode ? '#050505' : '#F8FAFC';
+<div class="loading-container">
+    <div class="loader-track"></div>
+    <div class="loader-ring"></div>
+    <div class="inner-track"></div>
+    <div class="inner-ring"></div>
+    <div class="center-dot"></div>
+</div>
+<script>
+    // Immediate theme check to prevent flash of wrong color
+    if (window.matchMedia) {
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.body.style.backgroundColor = isDarkMode ? '#050505' : '#F8FAFC';
 
-            // Update on change
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-                const newColorScheme = event.matches ? "dark" : "light";
-                document.body.style.backgroundColor = (newColorScheme === "dark") ? '#050505' : '#F8FAFC';
-            });
-        }
-    </script>
-    <script src="flutter_bootstrap.js" async></script>
+        // Update on change
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            const newColorScheme = event.matches ? "dark" : "light";
+            document.body.style.backgroundColor = (newColorScheme === "dark") ? '#050505' : '#F8FAFC';
+        });
+    }
+</script>
+<script src="flutter_bootstrap.js" async></script>
 </body>
 
 </html>
