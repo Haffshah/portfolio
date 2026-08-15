@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh M Shah | Flutter Developer</title>
+    <meta name="description"
+        content="Portfolio of Harsh M Shah, Senior Flutter Developer specializing in high-performance native experiences.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css?v=9">
+    <style>
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-smooth iframe {
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader-pulse"></div>
+    </div>
+
+    <!-- WebGL Background -->
+    <div id="canvas-container"><canvas id="webgl-canvas"></canvas></div>
+    <div class="fallback-bg" id="fallback-bg"></div>
+
+    <header class="glass-header" id="header" data-lenis-prevent>
+        <div class="logo" style="cursor: pointer;"
+            onclick="if(typeof lenis !== 'undefined' && lenis) { lenis.scrollTo(0); } else { window.scrollTo({top: 0, behavior: 'smooth'}); }">
+            HARSH<span>M SHAH</span></div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Work</a>
+            <a href="#experience">Experience</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <h1 class="reveal-text">Senior<br>Flutter Dev.</h1>
+                <p class="reveal-text delay">Building scalable, high-performance cross-platform mobile architectures.
+                </p>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+            </div>
+        </section>
+
+        <!-- About Segment -->
+        <section class="about-section" id="about">
+            <div class="content-side">
+                <h2 class="section-title reveal-text">Engineer <br>Profile</h2>
+            </div>
+            <div class="data-side">
+                <div class="glass-card reveal-text bio-block">
+                    <p id="bio-text"></p>
+                    <div id="stats-text" class="stats-text mt-4 highlight"></div>
+                </div>
+
+                <h3 class="mt-8 section-subtitle reveal-text">Technical Prowess</h3>
+                <div id="skills-grid" class="skills-grid mt-4">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Segment -->
+        <section class="projects-section" id="projects">
+            <h2 class="section-title reveal-text mb-6">Featured Architectures</h2>
+            <div class="projects-grid" id="featured-projects-grid">
+                <!-- Populated via JS -->
+            </div>
+        </section>
+
+        <!-- Other Projects Segment -->
+        <section class="projects-section" id="other-projects" style="margin-top: 6rem;">
+            <h2 class="section-title reveal-text mb-6">Other Work</h2>
+            <div class="projects-grid" id="other-projects-grid">
+                <!-- Populated via JS -->
+            </div>
+            <div id="projects-action" style="display:flex; justify-content:center; margin-top: 3rem;">
+                <!-- Populated via JS -->
+            </div>
+        </section>
+
+        <!-- GitHub Repositories Segment -->
+        <section class="projects-section" id="github-repos" style="margin-top: 6rem;">
+            <h2 class="section-title reveal-text mb-6">Open Source <br> Contributions</h2>
+            <div class="projects-grid" id="github-repos-grid">
+                <!-- Populated via JS -->
+            </div>
+        </section>
+
+        <!-- Experience & Certs -->
+        <section class="about-section" id="experience">
+            <div class="content-side">
+                <h2 class="section-title reveal-text">Timeline</h2>
+            </div>
+            <div class="data-side flex-column gap-6">
+                <div>
+                    <h3 class="section-subtitle reveal-text">Work Experience</h3>
+                    <div id="experience-list" class="mt-4 flex-column gap-4">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <h3 class="section-subtitle reveal-text">Certifications & Academics</h3>
+                    <div id="cert-list" class="mt-4 flex-column gap-2">
+                        <!-- Populated from JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="about-section" id="contact">
+            <div class="content-side">
+                <h2 class="section-title reveal-text">Connect</h2>
+            </div>
+            <div class="data-side flex-column gap-6">
+                <div class="glass-card reveal-text contact-block">
+                    <p class="mb-6 bio-block">Currently open for new opportunities. Whether you have a project in mind
+                        or just want to say hi, I'll try my best to get back to you!</p>
+                    <div class="contact-links">
+                        <button type="button" class="button-primary" id="contact-trigger" aria-expanded="false"
+                            aria-controls="contact-options">Get In Touch</button>
+                        <a href="assets/resume/Harsh_M_Shah_Flutter_Dev_4+_YoE_Resume.pdf" target="_blank"
+                            class="button-outline">Download Resume</a>
+                        <a href="assets/resume/Harsh_M_Shah_Flutter_Dev_4+YoE_CV.pdf" target="_blank"
+                            class="button-outline">Download CV</a>
+                    </div>
+                    <div class="contact-options hidden" id="contact-options">
+                        <button type="button" class="contact-option" id="contact-copy"
+                            data-email="shahharsh7786@gmail.com">
+                            <span class="contact-option-label">Copy email address</span>
+                            <span class="contact-option-value">shahharsh7786@gmail.com</span>
+                        </button>
+                        <a class="contact-option"
+                            href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shahharsh7786@gmail.com&amp;su=Hello%20Harsh"
+                            target="_blank" rel="noopener">
+                            <span class="contact-option-label">Compose in Gmail</span>
+                            <span class="contact-option-value">Opens in a new tab</span>
+                        </a>
+                        <a class="contact-option" href="mailto:shahharsh7786@gmail.com">
+                            <span class="contact-option-label">Open my mail app</span>
+                            <span class="contact-option-value">Needs a configured mail client</span>
+                        </a>
+                    </div>
+                    <div class="social-links mt-8">
+                        <a href="https://github.com/Haffshah" target="_blank">GitHub</a>
+                        <a href="https://www.linkedin.com/in/harshmshah77/" target="_blank">LinkedIn</a>
+                        <a href="https://www.instagram.com/_letsbuildapps/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                        <a href="https://haffshah.github.io/flutter_portfolio/#/home" target="_blank">Flutter
+                            Portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass-footer">
+        <p>© 2026 Harsh M Shah. Vanilla DOM rendering.</p>
+        <div class="footer-links mt-2">
+            <a href="https://github.com/Haffshah" target="_blank" class="footer-link">GitHub</a> |
+            <a href="https://www.linkedin.com/in/harshmshah77/" target="_blank" class="footer-link">LinkedIn</a> |
+            <a href="https://www.instagram.com/_letsbuildapps/" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- Project Details Modal Overlay -->
+    <div id="project-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-card" data-lenis-prevent>
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <div id="modal-tags" class="project-tags mb-4"></div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-desc-section">
+                    <h3>About</h3>
+                    <p id="modal-full-desc"></p>
+
+                    <div id="modal-tech-section" style="display:none;">
+                        <h3>Technologies</h3>
+                        <div id="modal-tech-tags" class="project-tags mb-4"></div>
+                    </div>
+
+                    <h3>Key Features</h3>
+                    <ul id="modal-features"></ul>
+
+                    <div id="modal-responsibilities-section" style="display:none;">
+                        <h3>My Contributions</h3>
+                        <p id="modal-responsibilities" style="font-style: italic;"></p>
+                    </div>
+
+                    <div id="modal-links" class="modal-links mt-6"></div>
+                </div>
+                <div class="modal-preview-section">
+                    <h3>App Preview <span
+                            style="font-size:0.7em; color:var(--pearl-dim); font-weight:normal; text-transform:none;">(Click
+                            to view full screen)</span></h3>
+                    <div id="modal-screenshots" class="screenshots-carousel mt-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Image Viewer -->
+    <div id="fullscreen-viewer" class="fs-viewer hidden">
+        <button class="fs-close" id="fs-close">&times;</button>
+        <div class="fs-image-container">
+            <img id="fs-image" src="" alt="Fullscreen Preview">
+        </div>
+        <div class="fs-controls">
+            <button id="fs-prev" class="fs-btn">&larr;</button>
+            <span id="fs-counter" class="fs-counter">1 / 1</span>
+            <button id="fs-next" class="fs-btn">&rarr;</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="projects_data.js?v=5"></script>
+    <script src="main.js?v=15"></script>
+</body>
+
+</html>
