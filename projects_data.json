@@ -1,5 +1,52 @@
 [
     {
+        "id": "rewardstack",
+        "title": "RewardStack",
+        "description": "Indian payment app coupon wallet with on-device OCR & Gemini AI",
+        "fullDescription": "RewardStack is an offline-first mobile coupon wallet for Indian payment apps (Google Pay, PhonePe, Paytm, CRED, Amazon Pay). It automatically extracts promo codes, cashback amounts, expiry dates, and terms from screenshots using Google ML Kit OCR and Gemini 2.5 Flash. Features include automated expiry notifications, fuzzy merchant matching across 140+ brands, offline SQLite caching with optional Firebase cloud sync, and an OLED monochrome UI with collapsing sliver physics.",
+        "tags": [
+            "Finance",
+            "Flutter",
+            "Google ML Kit (OCR)"
+        ],
+        "tech": [
+            "Flutter",
+            "Google ML Kit (OCR)",
+            "Gemini 2.5 Flash",
+            "Riverpod",
+            "SQLite (sqflite)",
+            "Firebase Auth & Firestore",
+            "RevenueCat",
+            "Local Notifications"
+        ],
+        "features": [
+            "Smart screenshot scanning with on-device OCR and spatial bounding-box heuristics",
+            "Multimodal AI refinement with Gemini 2.5 Flash for complex vouchers",
+            "Automated timezone-aware expiry reminders (3 days, 1 day, and day-of expiry)",
+            "Fuzzy merchant dictionary supporting 140+ Indian brands and payment apps",
+            "Offline-first SQLite storage with optional Firebase cloud sync & LWW reconciliation",
+            "High-contrast OLED monochrome interface with custom collapsing sliver physics",
+            "Review-before-save workflow with editable fields and continuous feedback loop",
+            "RevenueCat in-app subscriptions and hybrid credit ledger"
+        ],
+        "android": "coming_soon",
+        "ios": "coming_soon",
+        "website": "https://reward-stack-pro.vercel.app/",
+        "responsibilities": "Architected clean architecture structure with Riverpod and GetIt, built on-device ML Kit OCR spatial parser and Gemini 2.5 Flash fallback fusion engine, created offline-first SQLite database with Firebase sync, designed OLED monochrome UI with collapsing slivers, and configured RevenueCat subscription workflows.",
+        "isFeatured": true,
+        "isNew": true,
+        "screenshots": [
+            "../assets/project_mockup/rewardstack/screen_1.webp",
+            "../assets/project_mockup/rewardstack/screen_2.webp",
+            "../assets/project_mockup/rewardstack/screen_3.webp",
+            "../assets/project_mockup/rewardstack/screen_4.webp",
+            "../assets/project_mockup/rewardstack/screen_5.webp",
+            "../assets/project_mockup/rewardstack/screen_6.webp",
+            "../assets/project_mockup/rewardstack/screen_7.webp",
+            "../assets/project_mockup/rewardstack/screen_8.webp"
+        ]
+    },
+    {
         "id": "norvo",
         "title": "Norvo",
         "description": "Never lose a valuable connection — AI business card scanner",
