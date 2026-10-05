@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Harsh M Shah — Senior Flutter Developer & Mobile Architect</title>
+    <meta name="description"
+        content="Portfolio of Harsh M Shah, Senior Flutter Developer specializing in high-performance cross-platform mobile architectures, AI integrations, and offline-first apps.">
+    <link rel="icon" type="image/png" href="favicon.png?v=3">
+    <link rel="apple-touch-icon" href="favicon.png?v=3">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css?v=32">
+    <style>
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-smooth iframe {
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="light-theme">
+    <!-- Page Preloader -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <span class="loader-text">HARSH M SHAH</span>
+        </div>
+    </div>
+
+    <!-- Ambient Subtle Three.js Wave Canvas -->
+    <div id="canvas-container"><canvas id="webgl-canvas"></canvas></div>
+    <div class="fallback-bg" id="fallback-bg"></div>
+
+    <!-- Pastily-Style Dynamic Island Floating Navbar -->
+    <header class="dynamic-island-wrapper" id="navbar-wrapper">
+        <nav class="dynamic-island" id="dynamic-island" data-state="expanded" aria-label="Primary Navigation">
+            <div class="island-capsule">
+                <!-- Expanded State -->
+                <div class="island-layer island-expanded">
+                    <a href="#hero" class="island-brand" aria-label="Harsh M Shah — Home">
+                        <span class="brand-avatar-img brand-monogram">HS</span>
+                        <span class="brand-name">Harsh <span>Shah</span></span>
+                    </a>
+                    <div class="island-links">
+                        <a href="#hero" class="nav-link active">Overview</a>
+                        <a href="#projects" class="nav-link">Apps</a>
+                        <a href="#skills" class="nav-link">Stack</a>
+                        <a href="#experience" class="nav-link">Timeline</a>
+                        <a href="#opensource" class="nav-link">Open Source</a>
+                    </div>
+                    <a href="#contact" class="island-cta">Connect</a>
+                </div>
+
+                <!-- Compact State (Appears on scroll) -->
+                <div class="island-layer island-compact">
+                    <a href="#hero" class="island-brand-compact" aria-label="Back to top">
+                        <svg class="progress-ring" viewBox="0 0 36 36" aria-hidden="true">
+                            <circle cx="18" cy="18" r="15" class="ring-track"></circle>
+                            <circle cx="18" cy="18" r="15" class="ring-bar" id="nav-progress-bar"></circle>
+                        </svg>
+                        <span class="brand-avatar-mini-img brand-monogram-mini">HS</span>
+                    </a>
+                    <span class="compact-section-label" id="compact-nav-label">Harsh Shah</span>
+                    <a href="#contact" class="compact-cta-btn" title="Contact Me">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 2L11 13"></path>
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+                        </svg>
+                    </a>
+                    <button type="button" class="mobile-burger-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Drawer Sheet -->
+            <div class="island-sheet" id="mobile-sheet">
+                <div class="sheet-inner">
+                    <div class="sheet-header">
+                        <span class="sheet-title">Harsh M Shah</span>
+                        <button type="button" class="sheet-close" id="mobile-sheet-close" aria-label="Close menu">&times;</button>
+                    </div>
+                    <div class="sheet-links">
+                        <a href="#hero" class="sheet-link">Overview</a>
+                        <a href="#projects" class="sheet-link">Featured Apps</a>
+                        <a href="#skills" class="sheet-link">Tech & Architecture</a>
+                        <a href="#experience" class="sheet-link">Work Experience</a>
+                        <a href="#opensource" class="sheet-link">Open Source</a>
+                        <a href="#contact" class="sheet-link">Get In Touch</a>
+                    </div>
+                    <div class="sheet-footer">
+                        <a href="assets/resume/Harsh_M_Shah_Flutter_Dev_4+_YoE_Resume.pdf" target="_blank" class="sheet-btn">Download Resume</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero Section with Interactive Smartphone Simulator -->
+        <section class="hero-section" id="hero">
+            <div class="hero-container">
+                <!-- Left: Hero Copy & Status -->
+                <div class="hero-text-col">
+                    <!-- Prominent Spotlight Profile Card -->
+                    <div class="hero-profile-spotlight reveal-elem">
+                        <div class="profile-photo-wrap">
+                            <img src="assets/images/harsh_photo.jpg" alt="Harsh M Shah — Senior Flutter Developer" class="profile-photo-img">
+                            <span class="profile-status-ring" title="Available for projects & roles">
+                                <span class="status-beacon"></span>
+                            </span>
+                        </div>
+                        <div class="profile-meta-info">
+                            <div class="profile-name-row">
+                                <span class="profile-name">Harsh M Shah</span>
+                                <span class="verified-badge" title="Verified Senior Mobile Architect">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="#2D5A27">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <p class="profile-title">Senior Flutter Developer &amp; Mobile Architect</p>
+                            <div class="profile-tags">
+                                <span class="profile-tag">🚀 4+ Yrs Exp</span>
+                                <span class="profile-tag">📍 Ahmedabad, India</span>
+                                <span class="profile-tag status-available"><span class="tiny-green-dot"></span> Available for Projects</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h1 class="hero-title reveal-elem">
+                        Crafting scalable, <span class="gradient-text">60 FPS</span> mobile architectures.
+                    </h1>
+
+                    <p class="hero-subtitle reveal-elem">
+                        Senior Flutter Developer with 4+ years of expertise in building production-grade cross-platform apps across Fintech, EV Charging, On-Device AI/OCR, Live Streaming, and Offline-First Systems.
+                    </p>
+
+                    <div class="hero-stats-row reveal-elem">
+                        <div class="stat-pill">
+                            <span class="stat-num">25+</span>
+                            <span class="stat-label">Shipped Apps</span>
+                        </div>
+                        <div class="stat-pill">
+                            <span class="stat-num">4+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-pill">
+                            <span class="stat-num">100%</span>
+                            <span class="stat-label">Offline-First Capable</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta-group reveal-elem">
+                        <a href="#projects" class="btn-primary">
+                            <span>Explore Projects</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                        <a href="assets/resume/Harsh_M_Shah_Flutter_Dev_4+_YoE_Resume.pdf" target="_blank" class="btn-secondary">
+                            <span>Resume</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Smartphone Live Simulator -->
+                <div class="hero-simulator-col reveal-elem">
+                    <!-- Handwritten annotations -->
+                    <div class="handwritten-note note-top">
+                        <svg width="24" height="20" viewBox="0 0 34 28" fill="none" stroke="currentColor" class="doodle-arrow">
+                            <path d="M31 19 C23 19.5 13.5 16 5 10" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M11.5 6.8 C7.8 8.2 5.6 9.2 5 10 C6 12.2 8 14.2 10.6 15.8" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                        <span class="handwritten-text">Interactive Live Showcase!</span>
+                    </div>
+
+                    <div class="handwritten-note note-bottom">
+                        <span class="handwritten-text">Tap tabs to switch apps</span>
+                        <svg width="22" height="24" viewBox="0 0 28 34" fill="none" stroke="currentColor" class="doodle-arrow-bottom">
+                            <path d="M6 3 C5.5 13 9 24 19.5 30" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M12 28.4 C15.6 29.2 18.4 29.6 19.5 30 C19.2 28.4 18.9 26.2 18.8 23.6" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <!-- Smartphone Device Frame & External Controls -->
+                    <div class="phone-mockup-wrapper">
+                        <button type="button" class="sim-expand-pill-btn" id="sim-expand-btn" title="Expand to Centered Fullscreen Simulator">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                            <span>Centered Focus Mode</span>
+                        </button>
+                        
+                        <div class="sim-interactive-frame" id="sim-interactive-frame">
+                            <div class="phone-mockup" id="phone-mockup">
+                                <div class="phone-bezel">
+                                    <!-- Dynamic Island on phone -->
+                                    <div class="phone-notch">
+                                        <div class="notch-camera"></div>
+                                        <div class="notch-sensor"></div>
+                                    </div>
+
+                                    <!-- Phone Screen Area -->
+                                    <div class="phone-screen" id="phone-screen">
+                                        <!-- Status bar -->
+                                        <div class="phone-status-bar">
+                                            <span class="phone-time" id="live-phone-time">9:41</span>
+                                            <div class="phone-icons">
+                                                <svg width="12" height="10" viewBox="0 0 24 18" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L12 22l7.03-4.39C20.26 16.07 21 14.12 21 12c0-4.97-4.03-9-9-9z"/></svg>
+                                                <svg width="14" height="10" viewBox="0 0 24 12" fill="currentColor"><rect x="1" y="1" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="3" width="14" height="6" rx="1.5"/><rect x="20" y="4" width="2" height="4" rx="1"/></svg>
+                                            </div>
+                                        </div>
+
+                                        <!-- In-Phone App Navigation Switcher -->
+                                        <div class="phone-app-tabs" id="simulator-app-tabs">
+                                            <!-- Populated via JS -->
+                                        </div>
+
+                                        <!-- Screen Display Content (Unobstructed Full View) -->
+                                        <div class="phone-viewport" id="phone-viewport">
+                                            <div class="phone-slider" id="phone-slider">
+                                                <img id="sim-active-img" src="" alt="App Preview" class="sim-img" />
+                                            </div>
+                                        </div>
+
+                                        <!-- Home bar -->
+                                        <div class="phone-home-indicator"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- External Simulator Info & Navigation Card (Outside Phone) -->
+                            <div class="sim-external-card" id="sim-external-card">
+                                <div class="sim-external-header">
+                                    <div class="sim-title-group">
+                                        <h3 id="sim-app-title" class="sim-title">RewardStack</h3>
+                                        <span id="sim-app-tag" class="sim-tag">Finance & AI</span>
+                                    </div>
+                                    <div class="sim-controls">
+                                        <button type="button" class="sim-nav-btn" id="sim-prev" aria-label="Previous screenshot">‹</button>
+                                        <span id="sim-counter" class="sim-counter-pill">1/8</span>
+                                        <button type="button" class="sim-nav-btn" id="sim-next" aria-label="Next screenshot">›</button>
+                                    </div>
+                                </div>
+                                <p id="sim-app-desc" class="sim-desc">Indian coupon wallet with on-device OCR & Gemini 2.5 Flash.</p>
+                                <div class="sim-actions">
+                                    <button type="button" class="sim-btn-details" id="sim-open-details">
+                                        <span>Explore App Details</span>
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Bento Grid: Architecture & Technical Skills Showcase -->
+        <section class="section-container" id="skills">
+            <div class="section-header">
+                <span class="section-badge">Engineering Arsenal</span>
+                <h2 class="section-heading">Technical Prowess & System Architecture</h2>
+                <p class="section-subheading">A battle-tested tech stack engineered for scalable, offline-first, high-traffic mobile systems.</p>
+            </div>
+
+            <div class="bento-grid">
+                <!-- Bento Card 1: Flutter Core & UI (Span 2) -->
+                <div class="bento-card bento-span-2">
+                    <div class="bento-card-top">
+                        <div class="bento-icon-wrapper">💙</div>
+                        <span class="bento-meta-badge">Core Engine</span>
+                    </div>
+                    <h3 class="bento-title">Flutter & Dart Engine Mastery</h3>
+                    <p class="bento-desc">Crafting 60/120 FPS high-performance mobile UI with responsive & adaptive screen layouts, custom Slivers, RenderObjects, CustomPainter, Isolates for heavy compute, and native platform MethodChannels.</p>
+                    <div class="skill-pill-wrap">
+                        <span class="skill-pill active-pill">Flutter 3.x & Dart 3</span>
+                        <span class="skill-pill">Sliver Physics</span>
+                        <span class="skill-pill">Isolates & Background Compute</span>
+                        <span class="skill-pill">Custom Animations</span>
+                        <span class="skill-pill">Adaptive Layouts</span>
+                        <span class="skill-pill">MethodChannels</span>
+                        <span class="skill-pill">Flutter Web & Desktop</span>
+                    </div>
+                </div>
+
+                <!-- Bento Card 2: State Management (Span 1) -->
+                <div class="bento-card">
+                    <div class="bento-card-top">
+                        <div class="bento-icon-wrapper">🔄</div>
+                        <span class="bento-meta-badge">Architecture</span>
+                    </div>
+                    <h3 class="bento-title">State Management</h3>
+                    <p class="bento-desc">Strict feature-first / layer-first separation with Dependency Injection (GetIt/Injectable), immutable models (Freezed), and predictable state flows.</p>
+                    <div class="skill-pill-wrap">
+                        <span class="skill-pill active-pill">Riverpod 2.0</span>
+                        <span class="skill-pill">BLoC Pattern</span>
+                        <span class="skill-pill">Provider</span>
+                        <span class="skill-pill">GetX</span>
+                        <span class="skill-pill">Clean Architecture</span>
+                    </div>
+                </div>
+
+                <!-- Bento Card 3: On-Device AI & OCR (Span 1) -->
+                <div class="bento-card">
+                    <div class="bento-card-top">
+                        <div class="bento-icon-wrapper">🤖</div>
+                        <span class="bento-meta-badge">AI & Vision</span>
+                    </div>
+                    <h3 class="bento-title">On-Device AI & ML Kit</h3>
+                    <p class="bento-desc">Edge machine learning, spatial bounding-box OCR parsing, multimodal prompt refinement, and biometric face matching systems.</p>
+                    <div class="skill-pill-wrap">
+                        <span class="skill-pill active-pill">Google ML Kit (OCR)</span>
+                        <span class="skill-pill">Gemini 2.5 Flash SDK</span>
+                        <span class="skill-pill">TensorFlow Lite</span>
+                        <span class="skill-pill">Regula Face Match</span>
+                    </div>
+                </div>
+
+                <!-- Bento Card 4: Hardware & Real-Time Comms (Span 1) -->
+                <div class="bento-card">
+                    <div class="bento-card-top">
+                        <div class="bento-icon-wrapper">⚡</div>
+                        <span class="bento-meta-badge">Hardware & VoIP</span>
+                    </div>
+                    <h3 class="bento-title">Hardware & Real-Time</h3>
+                    <p class="bento-desc">Bluetooth/USB thermal receipt printing, Telnyx WebRTC & CallKit VoIP pipelines, live video streaming, and background GPS location clustering.</p>
+                    <div class="skill-pill-wrap">
+                        <span class="skill-pill active-pill">Thermal Printing</span>
+                        <span class="skill-pill">Telnyx WebRTC VoIP</span>
+                        <span class="skill-pill">Live Video Streaming</span>
+                        <span class="skill-pill">Google Maps SDK</span>
+                    </div>
+                </div>
+
+                <!-- Bento Card 5: Local Storage & Offline-First (Span 1) -->
+                <div class="bento-card">
+                    <div class="bento-icon-wrapper">💾</div>
+                    <h3 class="bento-title">Offline-First & Local DB</h3>
+                    <p class="bento-desc">Relational SQLite/Sqflite persistence, high-speed key-value indexing with Hive, Shared Preferences, and conflict-resolution cloud sync.</p>
+                    <div class="skill-pill-wrap">
+                        <span class="skill-pill active-pill">SQLite (sqflite)</span>
+                        <span class="skill-pill">Hive Local DB</span>
+                        <span class="skill-pill">Shared Preferences</span>
+                        <span class="skill-pill">ObjectBox</span>
+                        <span class="skill-pill">Cloud Sync</span>
+                    </div>
+                </div>
+
+                <!-- Bento Card 6: Cloud, Payments & CI/CD (Span 3 Full Width Banner) -->
+                <div class="bento-card bento-span-3">
+                    <div class="bento-card-top">
+                        <div class="bento-icon-wrapper">🛠️</div>
+                        <span class="bento-meta-badge">Ecosystem & DevOps</span>
+                    </div>
+                    <h3 class="bento-title">Cloud Ecosystem, Payments & Automated CI/CD</h3>
+                    <p class="bento-desc">End-to-end cloud and revenue infrastructure: multi-gateway payments (Stripe, Razorpay, In-App Subscriptions via RevenueCat), full Firebase suite (Auth, Firestore, FCM Push, Crashlytics, Remote Config), resilient RESTful APIs (Dio interceptors), Shorebird Over-The-Air code pushes, and automated Codemagic CI/CD build pipelines.</p>
+                    <div class="skill-pill-wrap">
+                        <span class="skill-pill active-pill">RevenueCat Subscriptions</span>
+                        <span class="skill-pill">Stripe & Razorpay</span>
+                        <span class="skill-pill">Firebase Suite</span>
+                        <span class="skill-pill">Dio REST APIs</span>
+                        <span class="skill-pill">WebSocket & Socket.io</span>
+                        <span class="skill-pill">Codemagic CI/CD</span>
+                        <span class="skill-pill">Shorebird OTA Code Push</span>
+                        <span class="skill-pill">Git & GitHub Actions</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pastily-Style Projects / Apps Section with Spaces Filter -->
+        <section class="section-container" id="projects">
+            <div class="section-header">
+                <span class="section-badge">Portfolio Archive</span>
+                <h2 class="section-heading">Featured Architectures & Applications</h2>
+                <p class="section-subheading">Explore 25+ production mobile applications shipped across iOS and Android.</p>
+            </div>
+
+            <!-- Interactive Category Filter (Spaces) -->
+            <div class="spaces-filter-bar" id="category-filter-bar">
+                <button type="button" class="space-chip active" data-filter="all">All Apps <span class="chip-count" id="count-all">25+</span></button>
+                <button type="button" class="space-chip" data-filter="featured">Featured ⭐ <span class="chip-count" id="count-featured">8</span></button>
+                <button type="button" class="space-chip" data-filter="ai">AI & ML 🤖 <span class="chip-count" id="count-ai">3</span></button>
+                <button type="button" class="space-chip" data-filter="fintech">Fintech & POS 💳 <span class="chip-count" id="count-fintech">4</span></button>
+                <button type="button" class="space-chip" data-filter="iot">Real-time & IoT 📍 <span class="chip-count" id="count-iot">6</span></button>
+                <button type="button" class="space-chip" data-filter="tools">Utility & Tools 🛠️ <span class="chip-count" id="count-tools">5</span></button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="projects-modern-grid" id="main-projects-grid">
+                <!-- Dynamically Populated by JS -->
+            </div>
+
+            <div class="projects-action-center" id="projects-action-center">
+                <!-- "Show More" injected dynamically -->
+            </div>
+        </section>
+
+        <!-- Open Source Contributions & Developer Tools -->
+        <section class="section-container" id="opensource">
+            <div class="section-header">
+                <span class="section-badge">Developer Ecosystem</span>
+                <h2 class="section-heading">Open Source Tools & CLI Utilities</h2>
+                <p class="section-subheading">Open-source libraries, CLIs, and automation utilities built for the Flutter community.</p>
+            </div>
+
+            <div class="oss-grid" id="github-repos-grid">
+                <!-- Populated via JS -->
+            </div>
+        </section>
+
+        <!-- Work Experience Timeline & Certifications -->
+        <section class="section-container" id="experience">
+            <div class="section-header">
+                <span class="section-badge">Career Journey</span>
+                <h2 class="section-heading">Experience & Qualifications</h2>
+                <p class="section-subheading">Track record of building scalable mobile solutions across agile teams.</p>
+            </div>
+
+            <div class="timeline-wrapper">
+                <div class="timeline-column">
+                    <h3 class="timeline-column-title">Work Experience</h3>
+                    <div class="timeline-list" id="experience-list">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <div class="timeline-column">
+                    <h3 class="timeline-column-title">Certifications & Accreditations</h3>
+                    <div class="cert-list" id="cert-list">
+                        <!-- Populated via JS -->
+                    </div>
+
+                    <!-- Developer Summary Card -->
+                    <div class="dev-summary-card">
+                        <h4 class="dev-summary-title">Why Pair with Harsh?</h4>
+                        <ul class="dev-summary-bullets">
+                            <li>⚡ Rapid prototype to production store deployments (Play Store &amp; App Store).</li>
+                            <li>🛡️ Clean Architecture with Riverpod &amp; 100% testable separation of concerns.</li>
+                            <li>📱 Native hardware bridge expertise: Bluetooth printers, WebRTC, ML Kit, biometric security.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Connect & Contact Hub -->
+        <section class="section-container" id="contact">
+            <div class="contact-card-container">
+                <div class="contact-card">
+                    <div class="contact-badge">Let's Connect</div>
+                    <h2 class="contact-title">Ready to build your next flagship mobile app?</h2>
+                    <p class="contact-desc">
+                        Currently open for Senior Mobile Developer roles, consulting, and ambitious architectural projects.
+                    </p>
+
+                    <div class="contact-actions-row">
+                        <button type="button" class="btn-primary" id="contact-trigger" aria-expanded="false" aria-controls="contact-options">
+                            <span>Get In Touch</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                        </button>
+                        <a href="assets/resume/Harsh_M_Shah_Flutter_Dev_4+_YoE_Resume.pdf" target="_blank" class="btn-secondary">
+                            <span>Download Resume</span>
+                        </a>
+                        <a href="assets/resume/Harsh_M_Shah_Flutter_Dev_4+YoE_CV.pdf" target="_blank" class="btn-secondary">
+                            <span>Download CV</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Email Options Accordion -->
+                    <div class="contact-options-panel hidden" id="contact-options">
+                        <button type="button" class="contact-opt-btn" id="contact-copy" data-email="shahharsh7786@gmail.com">
+                            <div class="opt-text">
+                                <span class="opt-label" id="contact-copy-label">Copy email address</span>
+                                <span class="opt-val">shahharsh7786@gmail.com</span>
+                            </div>
+                            <span class="opt-action-icon">📋</span>
+                        </button>
+
+                        <a class="contact-opt-btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=shahharsh7786@gmail.com&amp;su=Hello%20Harsh" target="_blank" rel="noopener">
+                            <div class="opt-text">
+                                <span class="opt-label">Compose in Gmail</span>
+                                <span class="opt-val">Opens in a new browser tab</span>
+                            </div>
+                            <span class="opt-action-icon">↗</span>
+                        </a>
+
+                        <a class="contact-opt-btn" href="mailto:shahharsh7786@gmail.com">
+                            <div class="opt-text">
+                                <span class="opt-label">Open default mail app</span>
+                                <span class="opt-val">Requires configured mail client</span>
+                            </div>
+                            <span class="opt-action-icon">✉</span>
+                        </a>
+                    </div>
+
+                    <!-- Social Handles -->
+                    <div class="contact-social-pills">
+                        <a href="https://github.com/Haffshah" target="_blank" class="social-pill" rel="noopener">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/harshmshah77/" target="_blank" class="social-pill" rel="noopener">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://www.instagram.com/_letsbuildapps/" target="_blank" class="social-pill" rel="noopener noreferrer">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            Instagram
+                        </a>
+                        <a href="https://haffshah.github.io/flutter_portfolio/#/home" target="_blank" class="social-pill" rel="noopener">
+                            Flutter Web Portfolio ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="modern-footer">
+        <div class="footer-inner">
+            <p class="footer-copy">© 2026 Harsh M Shah. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://github.com/Haffshah" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/harshmshah77/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://www.instagram.com/_letsbuildapps/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Project Details Modal Overlay -->
+    <div id="project-modal" class="modal-overlay hidden" data-lenis-prevent>
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modal-close" aria-label="Close modal">&times;</button>
+            
+            <div class="modal-scroll-body">
+                <div class="modal-header-section">
+                    <div class="modal-meta-row">
+                        <span class="modal-badge" id="modal-category-badge">Category</span>
+                        <div id="modal-store-badges" class="modal-store-badges"></div>
+                    </div>
+                    <h2 id="modal-title" class="modal-main-title">Project Title</h2>
+                    <p id="modal-full-desc" class="modal-description"></p>
+                </div>
+
+                <div class="modal-grid-details">
+                    <!-- Left: Highlights & Tech -->
+                    <div class="modal-left-pane">
+                        <div class="modal-block" id="modal-tech-section">
+                            <h4 class="modal-section-heading">Technologies & Libraries</h4>
+                            <div id="modal-tech-tags" class="modal-tech-pills"></div>
+                        </div>
+
+                        <div class="modal-block">
+                            <h4 class="modal-section-heading">Key Architectural Features</h4>
+                            <ul id="modal-features" class="modal-features-list"></ul>
+                        </div>
+
+                        <div class="modal-block" id="modal-responsibilities-section">
+                            <h4 class="modal-section-heading">My Architectural Role</h4>
+                            <p id="modal-responsibilities" class="modal-resp-text"></p>
+                        </div>
+                    </div>
+
+                    <!-- Right: Screenshots Carousel -->
+                    <div class="modal-right-pane">
+                        <div class="carousel-header">
+                            <h4 class="modal-section-heading">Application Mockups</h4>
+                            <span class="carousel-hint">(Click to view fullscreen zoom)</span>
+                        </div>
+                        <div id="modal-screenshots" class="modal-screenshots-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Image Zoom & Pan Viewer -->
+    <div id="fullscreen-viewer" class="fs-viewer hidden">
+        <button class="fs-close" id="fs-close" aria-label="Close viewer">&times;</button>
+        <div class="fs-image-container">
+            <img id="fs-image" src="" alt="Fullscreen Preview">
+        </div>
+        <div class="fs-controls">
+            <button id="fs-prev" class="fs-btn" aria-label="Previous">&larr;</button>
+            <span id="fs-counter" class="fs-counter">1 / 1</span>
+            <button id="fs-next" class="fs-btn" aria-label="Next">&rarr;</button>
+        </div>
+        <div class="fs-tip">Double click or scroll to zoom, drag to pan</div>
+    </div>
+
+    <!-- Fullscreen Simulator Focus Theater Overlay -->
+    <div id="sim-theater-overlay" class="sim-theater-overlay hidden" data-lenis-prevent aria-modal="true" role="dialog">
+        <div class="sim-theater-backdrop" id="sim-theater-backdrop"></div>
+        
+        <div class="sim-theater-topbar">
+            <button type="button" class="sim-back-btn" id="sim-theater-back" aria-label="Exit Fullscreen Simulator">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span>Back to Portfolio</span>
+                <kbd class="sim-esc-badge">ESC</kbd>
+            </button>
+
+            <div class="sim-theater-center-info">
+                <span class="sim-theater-badge">Live Interactive Simulator</span>
+                <span class="sim-theater-hint">Use arrow keys or click tabs to explore apps</span>
+            </div>
+
+            <button type="button" class="sim-theater-close-btn" id="sim-theater-close" aria-label="Close simulator">&times;</button>
+        </div>
+
+        <div class="sim-theater-stage" id="sim-theater-stage">
+            <!-- Focused Phone Mockup Container -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="projects_data.js?v=20"></script>
+    <script src="main.js?v=28"></script>
+</body>
+
+</html>
