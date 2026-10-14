@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Resources | Harsh M Shah</title>
+<meta name="description" content="Code, guides and demos from @_letsbuildapps posts. Find yours by the keyword in the post.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF6ED; --card:#fff; --text:#121316; --text2:#4A4D57; --muted:#767B8A;
+  --brand:#2D5A27; --pill:#EAF3E7; --border:rgba(18,19,22,.09);
+  --shadow:0 4px 20px -4px rgba(26,26,26,.06),0 1px 3px rgba(0,0,0,.03);
+  --warn:#8A5A00; --warn-bg:#FFF3D6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.top a{text-decoration:none;font-weight:600;font-size:14px}
+.brand{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.02em}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(30px,6vw,48px);line-height:1.1;margin:24px 0 12px}
+.lede{color:var(--text2);max-width:620px;font-size:17px}
+.search{margin:28px 0 14px;display:flex;gap:10px}
+.search input{flex:1;font:inherit;font-size:17px;padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:#fff;min-width:0}
+.search input:focus{outline:2px solid var(--brand);outline-offset:1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.chip{font:inherit;font-size:14px;padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:#fff;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
+.grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.card.hl{outline:3px solid var(--brand)}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.kw{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--pill);color:var(--brand);padding:3px 9px;border-radius:6px;border:0;cursor:pointer}
+.src{font-size:12px;color:var(--muted)}
+.card h3{font-family:'Space Grotesk',sans-serif;font-size:19px;line-height:1.25}
+.card p{color:var(--text2);font-size:15px}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:4px}
+.btn{font:inherit;font-size:14px;font-weight:600;text-decoration:none;padding:9px 14px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer;display:inline-block}
+.btn.p{background:var(--brand);color:#fff;border-color:var(--brand)}
+.soon{font-size:13px;background:var(--warn-bg);color:var(--warn);padding:6px 10px;border-radius:8px}
+.inc{font-size:13px!important;color:var(--muted)!important}
+.posts{display:flex;flex-wrap:wrap;gap:10px 16px}
+.post{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:12px;color:var(--muted);line-height:1.35}
+.post img{width:72px;height:72px;object-fit:cover;border-radius:10px;border:1px solid var(--border);background:#eee}
+.post b{color:var(--brand);font-weight:600}
+.post:hover b{text-decoration:underline}
+.empty{padding:40px 0;text-align:center;color:var(--muted)}
+.foot{margin:48px 0;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="index.html">&larr; Portfolio</a>
+    <span class="brand">HARSH M SHAH</span>
+    <a href="https://www.instagram.com/_letsbuildapps/" rel="noopener">@_letsbuildapps</a>
+  </div>
+
+  <h1>Free resources from my posts</h1>
+  <p class="lede">Saw "comment KEYWORD" or "link in bio"? Type the keyword below and grab the code, guide or demo. Each card shows the Instagram post it came from.</p>
+
+  <div class="search">
+    <input id="q" type="search" placeholder="Type the keyword (e.g. UISCENE)" autocomplete="off" aria-label="Search resources by keyword">
+  </div>
+  <div class="chips" id="chips" role="group" aria-label="Filter by type"></div>
+
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>No match. Message me the keyword on Instagram and I'll send it.</p>
+
+  <p class="foot">Code here is for learning and review. Demo repos contain only the relevant parts, not full client or production apps.</p>
+</div>
+
+<script>
+/* ADD A CARD for every new post that says "DM/comment KEYWORD" or "link in bio":
+   {kw:'KEYWORD', days:[N], fmt:'Reel|Carousel', kind:'repo|demo|soon|review', title, blurb,
+    links:[[label,url]] (repo/demo) | includes:[...], folder:'day_NN_slug' (soon; set ready:true once pushed)} */
+const IG_DM = 'https://ig.me/m/_letsbuildapps';
+const EMAIL = 'shahharsh7786@gmail.com';
+const GH = 'https://github.com/Haffshah/';
+// kind: repo (public code now) | demo (live app) | soon (new demo repo planned) | review (free architecture review)
+const DATA = [
+ // ---- Public repos that exist today
+ {kw:'GLOBAL',days:[4],fmt:'Carousel',kind:'repo',title:'Localization Studio',blurb:'Flutter app plus Flask backend that translates your app into 20+ languages, with live progress and batch download.',links:[['Localization Studio',GH+'localization-studio'],['i18n backend API',GH+'internationalization-backend-code'],['CLI script',GH+'automate_localization']]},
+ {kw:'KEYIFY',days:[9],fmt:'Carousel',kind:'repo',title:'Keyify: Dart CLI for i18n keys',blurb:'Extracts localizable strings from Flutter code and generates keys, with conflict detection.',links:[['Keyify',GH+'Keyify']]},
+ {kw:'FACEMATCH',alias:['SECURITY'],days:[13],fmt:'Carousel',kind:'repo',title:'Flutter face match',blurb:'TensorFlow Lite embeddings for fast cosine-similarity matching, plus SDK-level 1:1 verification and ObjectBox storage.',links:[['flutter-face-auth-app',GH+'flutter-face-auth-app']]},
+ {kw:'COMPLIANCE',days:[56,57],fmt:'Carousel + Reel',kind:'repo',title:'Mobile App Compliance Knowledge Base',blurb:'Apple App Store and Google Play policy checklists, plus an AI review prompt for a pre-submission audit.',links:[['mobile-app-compliance',GH+'mobile-app-compliance']]},
+ // ---- Live demo
+ {kw:'STACK',alias:['REWARD'],days:[50,51,52],fmt:'Carousel + Reels',kind:'demo',title:'RewardStack live demo',blurb:'Offline-first coupon wallet that reads payment-app screenshots with on-device OCR and Gemini. Try it in the browser.',links:[['Open live web app','https://reward-stack-pro.vercel.app/']]},
+ // ---- Planned demo repo: flutter-demo-snippets/<folder>. Generic code only, no client or production code.
+ {kw:'UISCENE',days:[49],fmt:'Reel',kind:'soon',title:'Fix the Flutter startup crash: UIScene migration',blurb:'The 2-step iOS UIScene migration from the Reel, with before/after files and a copy-paste AI prompt.',includes:['Info.plist snippet','Before/after AppDelegate','AI prompt'],folder:'day_49_uiscene_fix',ready:true},
+ {kw:'UI',days:[54],fmt:'Carousel',kind:'soon',title:'Pinned sliver layout: app bar, search header, list',blurb:'A pinned app bar and a pinned search-and-filter header over a coupon list, in a yellow-on-dark theme. Runnable, with fake data.',includes:['Sliver layout','Color tokens','Widget test'],folder:'day_54_sliver_ui',ready:true},
+ {kw:'TIPS',alias:['STACK-ENGINE'],days:[53],fmt:'Carousel',kind:'soon',title:'Scanner pipeline: local parse, AI fusion, confidence retry',blurb:'A runnable Dart demo of a layered scan pipeline: cache, always-on local parse, offline short-circuit, AI fusion per field, and a high-res retry when confidence is low.',includes:['Pipeline code','9 tests','No keys, no Flutter needed'],folder:'day_53_hybrid_scanner',ready:true},
+ {kw:'MATRIX',days:[55],fmt:'Carousel',kind:'soon',title:'Mobile ML decision matrix (PDF)',blurb:'On-device OCR vs embedded models vs Gemini, on one page.',includes:['1-page PDF'],folder:'day_55_ml_matrix'},
+ {kw:'OFFLINE',days:[40],fmt:'Carousel',kind:'soon',title:'Offline-first writes with a Drift outbox',blurb:'Write locally first, then sync: pending rows, retries, client-generated idempotency keys and two conflict strategies.',includes:['Drift outbox + sync engine','Conflict strategies','8 tests'],folder:'day_40_offline_sync',ready:true},
+ {kw:'PIPELINE',days:[45],fmt:'Carousel',kind:'soon',title:'Flutter CI/CD: git tag to store',blurb:'A GitHub Actions workflow with a quality gate, parallel Android and iOS builds, secret-based signing and a Fastlane TestFlight lane. A template: adjust it for your accounts.',includes:['release.yml','Fastfile','Secrets checklist'],folder:'day_45_cicd',ready:true},
+ {kw:'MASON',days:[47],fmt:'Reel',kind:'soon',title:'Mason brick for feature folders',blurb:'One command creates a clean-architecture feature: domain contract, data implementation, BLoC and a test.',includes:['feature_brick','Generated code analyzes clean','2 generated tests pass'],folder:'day_47_mason_brick',ready:true},
+ {kw:'PIGEON',days:[42],fmt:'Reel',kind:'soon',title:'MethodChannel vs Pigeon',blurb:'One Dart schema generates typed Dart, Swift and Kotlin code, so channel-name typos can no longer crash at runtime.',includes:['Pigeon schema','Generated Dart/Swift/Kotlin','Dart tests','Native examples (untested)'],folder:'day_42_pigeon',ready:true},
+ {kw:'SPECS',days:[36],fmt:'Reel',kind:'soon',title:'Give your AI coding agent a contract',blurb:'An AGENTS.md template with hard boundaries and a definition of done, plus a small script that fails when a widget imports HTTP code.',includes:['AGENTS.md template','Boundary checker script','5 tests'],folder:'day_36_agent_specs',ready:true},
+ {kw:'PAYMENTS',days:[34],fmt:'Reel',kind:'soon',title:'Stripe vs store billing cheat sheet',blurb:'When Apple Guideline 3.1.1 requires store billing and when Stripe is allowed.',includes:['1-page cheat sheet','Receipt-validation outline'],folder:'day_34_payments'},
+ {kw:'BACKEND',days:[35],fmt:'Carousel',kind:'soon',title:'Supabase vs Firebase: choose by architecture',blurb:'A decision guide, so you pick the backend by what you are building.',includes:['Decision tree','Comparison table'],folder:'day_35_backend_choice'},
+ {kw:'LAG',days:[21],fmt:'Reel',kind:'soon',title:'Why your Flutter app lags: Skia vs Impeller',blurb:'Shader compilation jank, and what moving to Impeller changes.',includes:['Profiling checklist','How to measure shader jank'],folder:'day_21_shader_jank'},
+ {kw:'DEEPSEEK',days:[22],fmt:'Reel',kind:'soon',title:'Run a small DeepSeek model on-device',blurb:'Offline inference on a phone with llama.cpp.',includes:['Setup guide','Build steps'],folder:'day_22_local_llm'},
+ {kw:'OCR',days:[25,46],fmt:'Reels',kind:'soon',title:'Flatten the card, then parse the text',blurb:'Perspective correction that turns a skewed card or receipt into an upright rectangle, plus a regex parser that turns OCR text into total, merchant and date. You supply the corners and the OCR.',includes:['Homography warp','Receipt parser','11 tests'],folder:'day_25_ocr_preprocess',ready:true},
+ {kw:'SCAN',days:[27],fmt:'Reel',kind:'soon',title:'Adaptive binarization for scans',blurb:'Turn a gray page into 1-bit black and white with adaptive thresholding, so shadowed paper stays white, then pack it at 1 bit per pixel.',includes:['Adaptive threshold','Bit packing','7 tests'],folder:'day_27_binarization',ready:true},
+ {kw:'VOIP',days:[23,29],fmt:'Reels',kind:'soon',title:'VoIP: number masking and background calls',blurb:'Virtual number relay idea and the push-to-CallKit flow for locked-phone calls.',includes:['Flow diagram','Setup notes (no credentials)'],folder:'day_29_voip'},
+ {kw:'PRINT',days:[24],fmt:'Carousel',kind:'soon',title:'Bluetooth thermal receipt printing',blurb:'ESC/POS commands, column padding that cannot crash on long names, and 20-byte chunked writes with a short pause between chunks.',includes:['ESC/POS helper','Chunked writer','10 tests'],folder:'day_24_thermal_print',ready:true},
+ {kw:'TRACK',days:[26],fmt:'Carousel',kind:'soon',title:'Background GPS without draining the battery',blurb:'Change how often you ask for location based on speed, and upload stored points in one batch instead of one request per tick.',includes:['Polling policy','Location batcher','7 tests'],folder:'day_26_background_gps',ready:true},
+ {kw:'POS',days:[31],fmt:'Reel',kind:'soon',title:'Offline POS sync with an append-only ledger',blurb:'Record each sale as a ledger entry in SQLite and replay them in order on reconnect, so two offline registers do not overwrite each other.',includes:['SQLite ledger','Sequential replay','6 tests'],folder:'day_31_pos_sync',ready:true},
+ {kw:'LIVE',days:[32],fmt:'Carousel',kind:'soon',title:'Adaptive RTMP quality on weak networks',blurb:'Drop video to 200 kbps, 15 fps and 360p when the send queue backs up, protect the audio track, and recover once the queue drains.',includes:['Stream controller','6 tests'],folder:'day_32_adaptive_stream',ready:true},
+ {kw:'UX',days:[30],fmt:'Carousel',kind:'soon',title:'Mobile comparison table with a pinned header',blurb:'A runnable Flutter comparison matrix: header pinned at the top, label column fixed on the left, and header and rows scrolling sideways together.',includes:['Comparison widget','Linked scroll controllers','6 tests + screenshot'],folder:'day_30_comparison_matrix',ready:true},
+ {kw:'KIOSK',days:[7,28],fmt:'Reel + Carousel',kind:'soon',title:'Face matching on weak hardware',blurb:'Reusable frame buffers so the camera loop stops allocating, cosine-similarity matching, and an Isolate to keep the work off the UI thread. Uses a stand-in embedding, not a real face model.',includes:['Frame buffer pool','Matcher + Isolate','13 tests'],folder:'day_07_low_end_matching',ready:true},
+ // ---- Early posts that said "source code (link in bio)". Generic demos only.
+ {kw:'SCHOLAR',days:[1],fmt:'Carousel',kind:'soon',title:'On-device math solving, LLM only when needed',blurb:'A Dart solver for arithmetic, linear equations and quadratics, with the carousel\'s routing logic: solve locally first, ask the LLM only for what the device cannot solve.',includes:['Symbolic parser with steps','LLM fallback router','9 tests'],folder:'day_01_math_solver',ready:true},
+ {kw:'CHAT',days:[2],fmt:'Carousel',kind:'soon',title:'Real-time chat without the battery drain',blurb:'An adaptive WebSocket heartbeat that stretches in the background, plus reconnect backoff with jitter. Runs as plain Dart with a fake clock in the tests.',includes:['AdaptiveSocketManager','ReconnectBackoff','10 tests'],folder:'day_02_chat_battery',ready:true},
+ {kw:'MAP',days:[3],fmt:'Carousel',kind:'soon',title:'Render 10,000+ map markers',blurb:'Cluster markers on a grid in a background isolate, only inside the visible area plus 10%, and draw them in one canvas pass instead of one widget per marker.',includes:['Cluster engine (compute)','Canvas painter','9 tests'],folder:'day_03_map_markers',ready:true},
+ {kw:'GEOFENCE',days:[6],fmt:'Carousel',kind:'soon',title:'Offline geofence alerts with ray casting',blurb:'The ray-casting point-in-polygon check from the carousel, GeoJSON hazard zones, and a monitor that fires enter and exit events once per crossing, with no network.',includes:['isPointInPolygon','GeoJSON zones','Enter/exit monitor','7 tests'],folder:'day_06_offline_geofence',ready:true},
+ {kw:'MESH',days:[8],fmt:'Carousel',kind:'soon',title:'3D meshes on mobile at 60 FPS',blurb:'Keep Draco decoding off the main thread.',includes:['Isolate decode example'],folder:'day_08_3d_meshes'},
+ {kw:'TIPPING',days:[10],fmt:'Reel',kind:'soon',title:'Live-stream tipping backend',blurb:'Redis locks and a queue to serialize concurrent micro-transactions.',includes:['Go WebSocket handler example','Queue sketch'],folder:'day_10_tipping_backend'},
+ {kw:'BUG',days:[14],fmt:'Reel',kind:'soon',title:'The 1-line layout bug that cost 3 days',blurb:'An unconstrained NestedScrollView and the frame drops it caused.',includes:['Repro widget','Fix'],folder:'day_14_layout_bug'},
+ {kw:'LOCALAI',days:[17],fmt:'Carousel',kind:'soon',title:'Stop paying OpenAI: on-device first',blurb:'Route simple tasks to a local model and complex reasoning to the cloud, tidy the input locally first, and keep simple tasks working offline. The model itself is up to you.',includes:['Local-first router','8 tests'],folder:'day_17_local_router',ready:true},
+ // ---- Free reviews (service CTAs)
+ {kw:'MVP',days:[15],fmt:'Carousel',kind:'review',title:'Launch stack review',blurb:'Send me your MVP stack and I will tell you what I would change.'},
+ {kw:'3D',days:[18],fmt:'Carousel',kind:'review',title:'App budget estimate',blurb:'Tell me what you want to build and I will give a rough estimate.'},
+ {kw:'REWRITE',days:[20],fmt:'Carousel',kind:'review',title:'UX and rewrite review',blurb:'I review your app UX and suggest what to optimize.'}
+];
+// A demo card flips to a real repo link only after you set ready:true on it AND the folder is pushed to DEMO_REPO.
+const DEMO_REPO = GH+'flutter-demo-snippets';
+DATA.forEach(r=>{ if(r.kind==='soon'&&r.ready){ r.kind='repo'; r.links=[['Open demo code',DEMO_REPO+'/tree/main/'+r.folder]]; } });
+const KIND = {repo:'Public repo',demo:'Live demo',soon:'Coming soon',review:'Free review'};
+// Instagram post for each day: link + cover image (assets/posts/dayNN.jpg).
+const POSTS = {"1":{"u":"https://www.instagram.com/p/DcJMd8fDEKm/","k":"Carousel","img":"assets/posts/day01.jpg"},"2":{"u":"https://www.instagram.com/p/DcLuXtPDGB6/","k":"Carousel","img":"assets/posts/day02.jpg"},"3":{"u":"https://www.instagram.com/p/DcNmeaamXWp/","k":"Carousel","img":"assets/posts/day03.jpg"},"4":{"u":"https://www.instagram.com/p/DcP6H7gDPGZ/","k":"Carousel","img":"assets/posts/day04.jpg"},"6":{"u":"https://www.instagram.com/p/DcVYUIcjLbC/","k":"Carousel","img":"assets/posts/day06.jpg"},"7":{"u":"https://www.instagram.com/reel/DcXolElmbMu/","k":"Reel","img":"assets/posts/day07.jpg"},"8":{"u":"https://www.instagram.com/p/DcX2OXMDAiG/","k":"Carousel","img":"assets/posts/day08.jpg"},"9":{"u":"https://www.instagram.com/p/Dcah4SODDro/","k":"Carousel","img":"assets/posts/day09.jpg"},"10":{"u":"https://www.instagram.com/reel/DcfoFggDEMK/","k":"Reel","img":"assets/posts/day10.jpg"},"13":{"u":"https://www.instagram.com/p/Dcm-ceQGba9/","k":"Carousel","img":"assets/posts/day13.jpg"},"14":{"u":"https://www.instagram.com/reel/DcpqHF4mV4A/","k":"Reel","img":"assets/posts/day14.jpg"},"15":{"u":"https://www.instagram.com/p/DcscqG5DMCB/","k":"Carousel","img":"assets/posts/day15.jpg"},"17":{"u":"https://www.instagram.com/p/DcxKtWymW6b/","k":"Carousel","img":"assets/posts/day17.jpg"},"18":{"u":"https://www.instagram.com/p/Dc0UXSEmXPJ/","k":"Carousel","img":"assets/posts/day18.jpg"},"20":{"u":"https://www.instagram.com/p/Dc5AAdrmXQd/","k":"Carousel","img":"assets/posts/day20.jpg"},"21":{"u":"https://www.instagram.com/reel/Dc7rrZmDAtg/","k":"Reel","img":"assets/posts/day21.jpg"},"22":{"u":"https://www.instagram.com/reel/Dc94bBsGfKO/","k":"Reel","img":"assets/posts/day22.jpg"},"23":{"u":"https://www.instagram.com/reel/DdAuVu7GSUU/","k":"Reel","img":"assets/posts/day23.jpg"},"24":{"u":"https://www.instagram.com/p/DdEli7wDJQm/","k":"Carousel","img":"assets/posts/day24.jpg"},"25":{"u":"https://www.instagram.com/reel/DdF-zuvjGck/","k":"Reel","img":"assets/posts/day25.jpg"},"26":{"u":"https://www.instagram.com/p/DdIqc9pDMHs/","k":"Carousel","img":"assets/posts/day26.jpg"},"27":{"u":"https://www.instagram.com/reel/DdLBm05DMMZ/","k":"Reel","img":"assets/posts/day27.jpg"},"28":{"u":"https://www.instagram.com/p/DdNtRBhjLuq/","k":"Carousel","img":"assets/posts/day28.jpg"},"29":{"u":"https://www.instagram.com/reel/DdP59BKDJFW/","k":"Reel","img":"assets/posts/day29.jpg"},"30":{"u":"https://www.instagram.com/p/DdSv86lDKlU/","k":"Carousel","img":"assets/posts/day30.jpg"},"31":{"u":"https://www.instagram.com/reel/DdVN5aKDDPF/","k":"Reel","img":"assets/posts/day31.jpg"},"32":{"u":"https://www.instagram.com/p/DdYAW6EGf7m/","k":"Carousel","img":"assets/posts/day32.jpg"},"34":{"u":"https://www.instagram.com/reel/DddDHZIDDgj/","k":"Reel","img":"assets/posts/day34.jpg"},"35":{"u":"https://www.instagram.com/p/DdfuvxlDF-5/","k":"Carousel","img":"assets/posts/day35.jpg"},"36":{"u":"https://www.instagram.com/reel/Ddh7nQljHkK/","k":"Reel","img":"assets/posts/day36.jpg"},"40":{"u":"https://www.instagram.com/p/DdsSI5pDONB/","k":"Carousel","img":"assets/posts/day40.jpg"},"42":{"u":"https://www.instagram.com/reel/Ddwylb4jGOp/","k":"Reel","img":"assets/posts/day42.jpg"},"45":{"u":"https://www.instagram.com/p/Dd5RDzmjLzo/","k":"Carousel","img":"assets/posts/day45.jpg"},"46":{"u":"https://www.instagram.com/reel/Dd8Dl5_jBjI/","k":"Reel","img":"assets/posts/day46.jpg"},"47":{"u":"https://www.instagram.com/reel/Dd-TvcmDBwd/","k":"Reel","img":"assets/posts/day47.jpg"},"49":{"u":"https://www.instagram.com/reel/DeDx7-KDJwP/","k":"Reel","img":"assets/posts/day49.jpg"},"50":{"u":"https://www.instagram.com/p/DeF-vjvGfTn/","k":"Carousel","img":"assets/posts/day50.jpg"},"51":{"u":"https://www.instagram.com/reel/DeI0nNcGQRc/","k":"Reel","img":"assets/posts/day51.jpg"},"52":{"u":"https://www.instagram.com/reel/DeLSjAEGYcG/","k":"Reel","img":"assets/posts/day52.jpg"},"53":{"u":"https://www.instagram.com/p/DeQVVaHjMmX/","k":"Carousel","img":"assets/posts/day53.jpg"},"54":{"u":"https://www.instagram.com/p/DeOFKPAGXB2/","k":"Carousel","img":"assets/posts/day54.jpg"},"55":{"u":"https://www.instagram.com/p/DeTHxmZGeQa/","k":"Carousel","img":"assets/posts/day55.jpg"}};
+const REPO_NAME = 'flutter-demo-snippets';
+
+const $ = s=>document.querySelector(s);
+let kind='all';
+const chips=[['all','All'],['repo','Public repos'],['demo','Live demos'],['soon','Coming soon'],['review','Free reviews']];
+$('#chips').innerHTML=chips.map(([k,l])=>`<button class="chip" data-k="${k}" aria-pressed="${k==='all'}">${l}</button>`).join('');
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;kind=b.dataset.k;
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c===b));render()});
+$('#q').addEventListener('input',render);
+
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function mailto(r){return `mailto:${EMAIL}?subject=${encodeURIComponent('Request: '+r.kw)}&body=${encodeURIComponent('Hi Harsh, I saw your post and want: '+r.title)}`}
+function actions(r){
+  if(r.kind==='repo'||r.kind==='demo') return r.links.map((l,i)=>`<a class="btn ${i===0?'p':''}" href="${l[1]}" target="_blank" rel="noopener">${esc(l[0])} &#8599;</a>`).join('');
+  const ask=`<a class="btn" href="${IG_DM}" target="_blank" rel="noopener">DM "${esc(r.kw)}"</a><a class="btn" href="${mailto(r)}">Email</a>`;
+  if(r.kind==='soon') return `<span class="soon">Not published yet. Message me the keyword and I will share it when it is ready.</span>`+ask;
+  return `<a class="btn p" href="${mailto(r)}">Request review</a><a class="btn" href="${IG_DM}" target="_blank" rel="noopener">DM me</a>`;
+}
+function postsBlock(r){
+  const ps=r.days.filter(d=>POSTS[d]).map(d=>({d,...POSTS[d]}));
+  if(!ps.length) return '<p class="inc">Instagram post: not published yet.</p>';
+  return '<div class="posts">'+ps.map(p=>`<a class="post" href="${p.u}" target="_blank" rel="noopener"><img src="${p.img}" alt="Cover of the Day ${p.d} Instagram ${p.k.toLowerCase()}" width="72" height="72" loading="lazy"><span>Day ${p.d} ${p.k}<br><b>View on Instagram &#8599;</b></span></a>`).join('')+'</div>';
+}
+function render(){
+  const q=$('#q').value.trim().toUpperCase();
+  const list=DATA.filter(r=>(kind==='all'||r.kind===kind)&&(!q||[r.kw,...(r.alias||[]),r.title,r.blurb].join(' ').toUpperCase().includes(q)));
+  $('#grid').innerHTML=list.map(r=>`<article class="card" id="${r.kw.toLowerCase()}">
+    <div class="row"><button class="kw" data-copy="${esc(r.kw)}" title="Copy keyword">${esc(r.kw)}</button><span class="src">Day ${r.days.join(', ')} &middot; ${esc(r.fmt)} &middot; ${KIND[r.kind]}</span></div>
+    <h3>${esc(r.title)}</h3><p>${esc(r.blurb)}</p>${r.includes?`<p class="inc">Will include: ${r.includes.map(esc).join(' &middot; ')}</p>`:''}${postsBlock(r)}<div class="acts">${actions(r)}</div></article>`).join('');
+  $('#empty').hidden=list.length>0;
+}
+$('#grid').addEventListener('click',e=>{const b=e.target.closest('.kw');if(!b)return;
+  try{navigator.clipboard.writeText(b.dataset.copy);b.textContent='Copied';setTimeout(render,900)}catch(_){}});
+render();
+// Deep link: resources.html#uiscene (also matches aliases)
+function hash(){
+  const h=decodeURIComponent(location.hash.slice(1)).toUpperCase(); if(!h)return;
+  const r=DATA.find(r=>r.kw===h||(r.alias||[]).includes(h)); if(!r)return;
+  $('#q').value=''; kind='all'; render();
+  const el=document.getElementById(r.kw.toLowerCase());
+  if(el){el.classList.add('hl');el.scrollIntoView({block:'center'})}
+}
+addEventListener('hashchange',hash); hash();
+</script>
+</body>
+</html>
